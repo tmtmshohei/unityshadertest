@@ -37,7 +37,7 @@
 
         Pass
         {
-            Blend SrcAlpha One
+            Blend SrcAlpha OneMinusSrcAlpha//Blend SrcAlpha One
             ColorMask RGB
             Cull Off Lighting Off ZWrite Off
 

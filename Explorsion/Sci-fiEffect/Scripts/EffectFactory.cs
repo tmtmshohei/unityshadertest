@@ -20,11 +20,11 @@ public class EffectFactory : MonoBehaviour
         
     }
 
-    public SciFiExplosion CreateEffect(Color color, float size,float speed)
+    public SciFiExplosion CreateEffect(Color color, float life,float speed)
     {
         
         effect = Instantiate(effectSource);
-        effect.Init(color, size, speed);
+        effect.Init(color, life, speed);
         return effect;
         
     }

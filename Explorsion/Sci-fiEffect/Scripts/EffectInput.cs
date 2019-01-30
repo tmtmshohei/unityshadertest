@@ -10,12 +10,12 @@ public class EffectInput : MonoBehaviour
 
     
     [SerializeField]
-    private Color color = Color.blue;
+    private Color color = Color.green;
 
     [SerializeField]
-    private float size = 1f;
+    private float life = 0.7f;
     [SerializeField]
-    private float speed = 1.5f;
+    private float speed = 1.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,7 @@ public class EffectInput : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.S))
         {
-            effectFactory.CreateEffect(color, size,speed);
+            effectFactory.CreateEffect(color, life,speed);
         }
     }
 }

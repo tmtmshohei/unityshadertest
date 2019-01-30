@@ -13,16 +13,9 @@ public class SciFiExplosion : MonoBehaviour
     private Material material;
 
     private float  time;
+    private float delayTime;
     
-    // Start is called before the first frame update
-
-    private float passedtime;    
-
-    public  void Update()
-    {
-        passedtime += Time.deltaTime;
-    }
-    public void Init(Color color, float size , float speed)
+    public void Init(Color color, float life  , float speed)
     {
         //マテリアルの取得
         material = meshRenderer.material;
@@ -32,11 +25,10 @@ public class SciFiExplosion : MonoBehaviour
         //material.hogehoge 
         material.SetFloat("_PassedTime",time);
         material.SetFloat("_Speed",speed);
-        //material.SetColor("_TintColor",color);
-        Debug.Log("ScifiExplosion Color = " + color + "  size = " + size+ "speed" + speed);
+        material.SetColor("_TintColor",color);
+        Debug.Log("ScifiExplosion Color = " + color + "  life = " + life+ "speed" + speed+"color."+Color.green);
 
-
-        float delayTime = 0.7f;
+        delayTime = life;
         Observable.Return(0)
         .Delay(TimeSpan.FromSeconds(delayTime))
         .Subscribe(_ =>
@@ -46,5 +38,15 @@ public class SciFiExplosion : MonoBehaviour
             Destroy(gameObject);
 
         }).AddTo(this);
+
+        Observable.EveryUpdate()
+        .Subscribe(_=>
+        {
+            color.a = Mathf.Lerp(color.a, 0, 0.05f);
+            material.SetColor("_TintColor",color);
+            
+        }).AddTo(this);
+
+        
     }
 }
